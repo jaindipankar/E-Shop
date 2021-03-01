@@ -20,7 +20,7 @@ router.get("/:id", async (req, res) => {
       .status(500)
       .json({ message: "The user with the given ID was not found." });
   }
-  res.status(200).send(user);
+  res.send(user);
 });
 
 router.post(`/`, async (req, res) => {
@@ -68,8 +68,7 @@ router.post("/login", async (req, res) => {
         userId: user.id,
         isAdmin: user.isAdmin,
       },
-      secret,
-      { expiresIn: "1w" }
+      secret
     );
     return res.status(200).send({ user: user.email, token });
   } else {
